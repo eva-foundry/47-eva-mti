@@ -3,7 +3,7 @@
 **Template Version**: 3.2.0
 **Last Updated**: February 25, 2026 10:14 ET
 **Project**: 47-eva-mti -- {PROJECT_ONE_LINE_DESCRIPTION}
-**Path**: `C:\AICOE\eva-foundation\47-eva-mti\`
+**Path**: `C:\AICOE\eva-foundry\47-eva-mti\`
 **Stack**: {PROJECT_STACK}
 
 > This file is the Copilot operating manual for this repository.
@@ -72,7 +72,7 @@ Loop      --> return to Discover if tasks remain
 > The HTTP API is the only interface. One HTTP call beats ten file reads.
 > The API self-documents: `GET /model/agent-guide` returns the complete operating protocol.
 
-> **Full reference**: `C:\AICOE\eva-foundation\37-data-model\USER-GUIDE.md` (v2.5)
+> **Full reference**: `C:\AICOE\eva-foundry\37-data-model\USER-GUIDE.md` (v2.5)
 > The model is the single source of truth. One HTTP call beats 10 file reads.
 > Never grep source files for something the model already knows.
 
@@ -87,7 +87,7 @@ if (-not $h) {
     $base = "http://localhost:8010"
     $h = Invoke-RestMethod "$base/health" -ErrorAction SilentlyContinue
     if (-not $h) {
-        $env:PYTHONPATH = "C:\AICOE\eva-foundation\37-data-model"
+        $env:PYTHONPATH = "C:\AICOE\eva-foundry\37-data-model"
         Start-Process "C:\AICOE\.venv\Scripts\python.exe" `
             "-m uvicorn api.server:app --port 8010 --reload" -WindowStyle Hidden
         Start-Sleep 4
@@ -314,12 +314,24 @@ az logout; az login --use-device-code --tenant {TENANT_ID}
 
 ## PART 2 -- PROJECT-SPECIFIC
 
+### Project Lock
+
+This file is the copilot-instructions for **47-eva-mti** (47-eva-mti).
+
+The workspace-level bootstrap rule "Step 1 -- Identify the active project from the currently open file path"
+applies **only at the initial load of this file** (first read at session start).
+Once this file has been loaded, the active project is locked to **47-eva-mti** for the entire session.
+Do NOT re-evaluate project identity from editorContext or terminal CWD on each subsequent request.
+Work state and sprint context are read from `STATUS.md` and `PLAN.md` at bootstrap -- not from this file.
+
+---
+
 ---
 
 ### Project Identity
 
 **Name**: EVA Machine Trust Index
-**Folder**: `C:\AICOE\eva-foundation\47-eva-mti`
+**Folder**: `C:\AICOE\eva-foundry\47-eva-mti`
 **ADO Epic**: To be created (see 19-ai-gov ADO artifacts for governance epics)
 **37-data-model record**: `GET /model/projects/47-eva-mti`
 **Maturity**: poc
@@ -375,14 +387,14 @@ Current state: **specification only** -- no runnable code yet. Reference specs a
 Invoke-RestMethod "$base/model/projects/47-eva-mti"
 
 # When implementation begins -- start Trust Service locally:
-# Set-Location "C:\AICOE\eva-foundation\47-eva-mti"
+# Set-Location "C:\AICOE\eva-foundry\47-eva-mti"
 # C:\AICOE\.venv\Scripts\python -m uvicorn trust_service.main:app --port 8030 --reload
 
 # Reference specs (in 19-ai-gov):
-# C:\AICOE\eva-foundation\19-ai-gov\eva-mti-compute-specs.md
-# C:\AICOE\eva-foundation\19-ai-gov\eva-mti-trust-service-api.md
-# C:\AICOE\eva-foundation\19-ai-gov\eva-mti-scope.md
-# C:\AICOE\eva-foundation\19-ai-gov\eva-mti-actions-matrix.md
+# C:\AICOE\eva-foundry\19-ai-gov\eva-mti-compute-specs.md
+# C:\AICOE\eva-foundry\19-ai-gov\eva-mti-trust-service-api.md
+# C:\AICOE\eva-foundry\19-ai-gov\eva-mti-scope.md
+# C:\AICOE\eva-foundry\19-ai-gov\eva-mti-actions-matrix.md
 ```
 
 ---
@@ -474,6 +486,6 @@ All must pass before merging a PR:
 
 ---
 
-*Source template*: `C:\AICOE\eva-foundation\07-foundation-layer\02-design\artifact-templates\copilot-instructions-template.md` v3.2.0
-*Project 07 README*: `C:\AICOE\eva-foundation\07-foundation-layer\README.md`
-*EVA Data Model USER-GUIDE*: `C:\AICOE\eva-foundation\37-data-model\USER-GUIDE.md`
+*Source template*: `C:\AICOE\eva-foundry\07-foundation-layer\02-design\artifact-templates\copilot-instructions-template.md` v3.2.0
+*Project 07 README*: `C:\AICOE\eva-foundry\07-foundation-layer\README.md`
+*EVA Data Model USER-GUIDE*: `C:\AICOE\eva-foundry\37-data-model\USER-GUIDE.md`
