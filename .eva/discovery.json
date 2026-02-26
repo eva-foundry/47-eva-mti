@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "schema": "eva.discovery.v2",
+    "generated_at": "2026-02-25T06:38:06.247Z",
+    "repo": "C:\\AICOE\\eva-foundation\\47-eva-mti"
+  },
+  "project": null,
+  "planned": {
+    "epic": {
+      "title": "47-eva-mti — EVA Machine Trust Index",
+      "source": "README.md"
+    },
+    "features": [
+      {
+        "id": "F47-01",
+        "title": "Design Phases (Inherited from 19-ai-gov)",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F47-02",
+        "title": "Open Work ? Implementation",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F47-03",
+        "title": "Design Completion Summary",
+        "source": "veritas-plan.json"
+      }
+    ],
+    "stories": [
+      {
+        "id": "F47-01-001",
+        "title": "Phase 1 ? MTI Concept and Subscore Definitions (Complete)",
+        "feature_id": "F47-01",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F47-01-002",
+        "title": "Phase 2 ? Computation Specification (Complete)",
+        "feature_id": "F47-01",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F47-01-003",
+        "title": "Phase 3 ? Trust Service API Contract (Complete)",
+        "feature_id": "F47-01",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F47-01-004",
+        "title": "Phase 4 ? Cosmos Container Schema (Complete)",
+        "feature_id": "F47-01",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F47-02-001",
+        "title": "Phase 5 ? Trust Service Implementation (Not Started)",
+        "feature_id": "F47-02",
+        "source": "veritas-plan.json"
+      }
+    ],
+    "tasks": [],
+    "acceptance": [],
+    "declared_status": {}
+  },
+  "actual": {
+    "artifacts": [
+      {
+        "path": "ACCEPTANCE.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "ado-artifacts.json",
+        "type": "data",
+        "story_tags": []
+      },
+      {
+        "path": "ado-import.ps1",
+        "type": "code",
+        "story_tags": [
+          "F47-01-001",
+          "F47-01-002",
+          "F47-01-003",
+          "F47-01-004",
+          "F47-02-001"
+        ]
+      },
+      {
+        "path": "PLAN.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "PLAN.md.bak",
+        "type": "other",
+        "story_tags": []
+      },
+      {
+        "path": "README.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "STATUS.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": ".github/copilot-instructions.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "docs/20260223-architecture-brief.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "docs/20260223-mti-wbs.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": ".github/copilot-skills/00-skill-index.skill.md",
+        "type": "doc",
+        "story_tags": []
+      }
+    ],
+    "story_artifact_map": {
+      "F47-01-001": {
+        "artifacts": [
+          {
+            "path": "ado-import.ps1",
+            "type": "code",
+            "story_tags": [
+              "F47-01-001",
+              "F47-01-002",
+              "F47-01-003",
+              "F47-01-004",
+              "F47-02-001"
+            ]
+          }
+        ]
+      },
+      "F47-01-002": {
+        "artifacts": [
+          {
+            "path": "ado-import.ps1",
+            "type": "code",
+            "story_tags": [
+              "F47-01-001",
+              "F47-01-002",
+              "F47-01-003",
+              "F47-01-004",
+              "F47-02-001"
+            ]
+          }
+        ]
+      },
+      "F47-01-003": {
+        "artifacts": [
+          {
+            "path": "ado-import.ps1",
+            "type": "code",
+            "story_tags": [
+              "F47-01-001",
+              "F47-01-002",
+              "F47-01-003",
+              "F47-01-004",
+              "F47-02-001"
+            ]
+          }
+        ]
+      },
+      "F47-01-004": {
+        "artifacts": [
+          {
+            "path": "ado-import.ps1",
+            "type": "code",
+            "story_tags": [
+              "F47-01-001",
+              "F47-01-002",
+              "F47-01-003",
+              "F47-01-004",
+              "F47-02-001"
+            ]
+          }
+        ]
+      },
+      "F47-02-001": {
+        "artifacts": [
+          {
+            "path": "ado-import.ps1",
+            "type": "code",
+            "story_tags": [
+              "F47-01-001",
+              "F47-01-002",
+              "F47-01-003",
+              "F47-01-004",
+              "F47-02-001"
+            ]
+          }
+        ]
+      }
+    },
+    "commit_evidence_map": {}
+  }
+}

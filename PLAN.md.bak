@@ -1,0 +1,129 @@
+# PLAN — EVA Machine Trust Index (47-eva-mti)
+
+**Version:** 1.0  
+**Date:** 2026-02-23 16:33 ET  
+**Owner:** AICOE
+
+> This file documents the design and implementation phases for the EVA Machine Trust Index (MTI) and Trust Service.  
+> The MTI specification was developed in `19-ai-gov` and separated into this project on Feb 23, 2026.  
+> Implementing teams read the specs here and author their own backlogs.
+
+---
+
+## Design Phases (Inherited from 19-ai-gov)
+
+The following specification work was completed in 19-ai-gov before the split. It is fully inherited by this project.
+
+### Phase 1 — MTI Concept and Subscore Definitions (Complete)
+
+**M-01 · MTI Concept and Rationale**  
+Define the Machine Trust Index as a dynamic, evidence-based, contextual trust score for EVA actors. Establish that trust is computed (not assumed) across 6 independent dimensions.  
+Basis: NuEnergy.ai / DGC-CGN Machine Trust Index White Paper (2020).  
+→ `EVA-Machine-trust-Index.md` (reference copy in 19-ai-gov)  
+**Status: Complete (inherited)**
+
+**M-02 · 6 Subscore Definitions**  
+Define ITI, BTI, CTI, ETI, STI, ARI — each with data sources, inputs, and example values.
+
+| Subscore | Full Name | Core Measurement |
+|---|---|---|
+| ITI | Identity Trust Index | Auth strength, MFA, ToU, role maturity |
+| BTI | Behaviour Trust Index | Violations, anomalies, denial patterns |
+| CTI | Compliance Trust Index | % controls + obligations satisfied |
+| ETI | Evidence Trust Index | Pack completeness, SHA-256 validation |
+| STI | Security Trust Index | Prompt injection, exfil, anomaly signals |
+| ARI | Agent Reliability Index | Hallucination rate, grounding, red team |
+
+→ `eva-mti-scope.md` (reference copy in 19-ai-gov)  
+**Status: Complete (inherited)**
+
+---
+
+### Phase 2 — Computation Specification (Complete)
+
+**M-03 · Computation Formulas and Weights**  
+Define the full computation model: per-subscore input → score formula, actor-type weight tables (HUMAN vs AGENT vs SERVICE vs SYSTEM), composite formula, normalization, decay model, missing signal penalty, success boost cap.  
+→ `eva-mti-compute-specs.md` (reference copy in 19-ai-gov)  
+**Status: Complete (inherited) — YAML has HTML entity issue (reference only)**
+
+**M-04 · Trust Bands and Allowed-Actions Matrix**  
+Define the 5 trust bands (UNTRUSTED / LOW / GUARDED / TRUSTED / HIGH TRUST) and map each band to allowed action categories across 9 dimensions.  
+→ `eva-mti-actions-matrix.md` (reference copy in 19-ai-gov)  
+**Status: Complete (inherited)**
+
+---
+
+### Phase 3 — Trust Service API Contract (Complete)
+
+**M-05 · OpenAPI 3.0 Trust Service Contract**  
+Full OpenAPI 3.0 spec for the Trust Service surface:
+
+| Endpoint | Purpose |
+|---|---|
+| `POST /trust/evaluateTrust` | Compute all 6 subscores + Composite MTI |
+| `GET /trust/getActorTrust/{actorId}` | Retrieve current and historical MTI scores |
+| `POST /trust/getDecision` | Full governance decision (calls policy layer) |
+| `POST /trust/signal` | Ingest trust signal event, trigger async MTI recompute |
+
+→ `eva-mti-trust-service-api.md` (reference copy in 19-ai-gov)  
+**Status: Complete (inherited) — YAML has HTML entity issue (reference only)**
+
+---
+
+### Phase 4 — Cosmos Container Schema (Complete)
+
+**M-06 · `actor_trust_scores` Container Schema**  
+Define the Cosmos container that stores per-actor MTI history: composite score, all 6 subscores, timestamp, context snapshot, computation version. Supports 30-day lookback for audit.  
+→ `eva-api-n-cosmos-container.md` §actor_trust_scores (reference copy in 19-ai-gov)  
+**Status: Complete (inherited)**
+
+---
+
+## Open Work — Implementation
+
+The design is complete. Implementing teams should review the specs and make their own decisions on the following.
+
+### Phase 5 — Trust Service Implementation (Not Started)
+
+**M-07 · Trust Service Runtime**  
+Build and deploy the Trust Service API. Candidate host: `29-foundry`.
+
+Implementation requirements from specs:
+- Stateless HTTP service — compute subscores per request, store result per actor
+- Signal ingestion endpoint (`/signal`) triggers async Cosmos write + recompute queue
+- Governance catalog read: CTI and ETI inputs come from `governance_evaluations` and `evidence_artifacts`
+- Entra ID bearer auth on all endpoints
+- p95 latency: `/evaluateTrust` <= 150 ms, `/getDecision` <= 200 ms
+
+**Status: Not started**
+
+**M-08 · Subscore Data Pipeline**  
+Wire signal sources to subscore inputs:
+
+| Subscore | Signal Source | Integration Project |
+|---|---|---|
+| ITI | Entra ID token claims, RBAC role assignments | 28-rbac |
+| BTI | audit_events, APIM denial logs | 40-eva-control-plane, 17-apim |
+| CTI | governance_evaluations, obligation_instances | 19-ai-gov runtime |
+| ETI | evidence_artifacts validation events | 40-eva-control-plane |
+| STI | APIM threat headers, App Insights anomaly | 17-apim, 29-foundry |
+| ARI | EVA Brain evaluation telemetry, red team results | 33-eva-brain-v2, 36-red-teaming |
+
+**Status: Not started**
+
+**M-09 · YAML Spec Remediation**  
+Strip `&nbsp;` HTML entities from `eva-mti-compute-specs.md` and `eva-mti-trust-service-api.md` to produce parse-ready YAML. Create clean copies in this project's directory.
+
+**Status: Not started**
+
+---
+
+## Design Completion Summary
+
+| Phase | Deliverables | Status |
+|---|---|---|
+| Phase 1 — MTI Concept + Subscores | MTI rationale, 6 subscore definitions | Complete (inherited) |
+| Phase 2 — Computation Spec | Formulas, weights, decay, bands, actions matrix | Complete (inherited) |
+| Phase 3 — Trust Service API | OpenAPI 3.0 contract (4 endpoints) | Complete (inherited) |
+| Phase 4 — Cosmos Schema | `actor_trust_scores` container | Complete (inherited) |
+| Phase 5 — Implementation | Trust Service runtime, signal pipeline, YAML remediation | Not started |

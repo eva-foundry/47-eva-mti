@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "schema": "eva.reconciliation.v2",
+    "generated_at": "2026-02-25T06:38:06.260Z",
+    "repo": "C:\\AICOE\\eva-foundation\\47-eva-mti",
+    "discovery_path": "C:\\AICOE\\eva-foundation\\47-eva-mti\\.eva\\discovery.json"
+  },
+  "coverage": {
+    "stories_total": 5,
+    "stories_with_artifacts": 5,
+    "stories_with_evidence": 0,
+    "consistency_score": 0
+  },
+  "features": [
+    {
+      "id": "F47-01",
+      "title": "Design Phases (Inherited from 19-ai-gov)",
+      "story_count": 4,
+      "stories_with_artifacts": 4,
+      "stories_with_evidence": 0,
+      "consistency_score": 0,
+      "mti": 50,
+      "gap_count": 0
+    },
+    {
+      "id": "F47-02",
+      "title": "Open Work ? Implementation",
+      "story_count": 1,
+      "stories_with_artifacts": 1,
+      "stories_with_evidence": 0,
+      "consistency_score": 0,
+      "mti": 50,
+      "gap_count": 0
+    },
+    {
+      "id": "F47-03",
+      "title": "Design Completion Summary",
+      "story_count": 0,
+      "stories_with_artifacts": 0,
+      "stories_with_evidence": 0,
+      "consistency_score": 0,
+      "mti": 0,
+      "gap_count": 0
+    }
+  ],
+  "gaps": []
+}
